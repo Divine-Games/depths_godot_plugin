@@ -31,7 +31,7 @@ divine_tools::~divine_tools()
     singleton = nullptr;
 }
 
-Dictionary divine_tools::generateMapFromSeed(int width, int height, int64_t seed)
+Dictionary divine_tools::generateMapFromSeed(int32_t width, int32_t height, int64_t seed)
 {
     char *result = GenerateMapJSON(width, height, seed);
     return JSON::parse_string(result);
