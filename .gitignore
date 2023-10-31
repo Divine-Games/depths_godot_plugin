@@ -18,3 +18,6 @@ build/
 *.exp
 *.lib
 *.o
+
+#Cleanup local release zip file
+release/
