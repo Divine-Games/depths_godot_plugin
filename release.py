@@ -17,7 +17,7 @@ with open("project/addons/divine_tools/plugin.cfg", "w") as cfg_file:
 if os.path.exists("release/divine_tools/addons"):
     shutil.rmtree("release/divine_tools/addons", ignore_errors=True)
 
-copy_tree("project/addons/", "release/temp/divine_tools/addons")
+copy_tree("project/addons/", "release/temp/addons")
 
 shutil.make_archive("release/divine_tools", "zip", "release/temp/")
 
