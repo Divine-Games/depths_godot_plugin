@@ -6,11 +6,14 @@
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
+
+#define BIND_METHOD(method, ...) godot::ClassDB::bind_method(D_METHOD(#method, #__VA_ARGS__), &divine_tools::method)
+
 divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
 {
-    ClassDB::bind_method(D_METHOD("get_sys_monitor_info", "width", "height", "seed"), &divine_tools::generateMapFromSeed);
+    BIND_METHOD(generateMapFromSeed, width, height, seed);
 }
 
 divine_tools *divine_tools::get_singleton()
