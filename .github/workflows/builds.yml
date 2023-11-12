@@ -20,13 +20,15 @@ jobs:
       matrix:
         include:
           - identifier: windows-debug
-            os: windows-latest
+            os: ubuntu-latest
+            runner: ubuntu-20.04
             name: 🏁 Windows Debug
             target: template_debug
             platform: windows
             arch: x86_64
           - identifier: windows-release
-            os: windows-latest
+            os: ubuntu-latest
+            runner: ubuntu-20.04
             name: 🏁 Windows Release
             target: template_release
             platform: windows
@@ -90,6 +92,12 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -qqq build-essential pkg-config
+
+      - name: Install MinGW
+        if: ${{ matrix.platform == 'windows' }}
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qqq mingw-w64
 
       - name: Compile Extension
         shell: sh
