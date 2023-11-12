@@ -2,7 +2,7 @@
 #include "lib/divine_tools/mapgen.h"
 #include <stdio.h>
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
