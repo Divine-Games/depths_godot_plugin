@@ -45,6 +45,10 @@ elif env["platform"] == "windows":
     divine_tools_library = "mapgen.dll"
     libexportfolder = "/windows/"
 
+elif env["platform"] == "macos":
+    divine_tools_library = "libmapgen.dylib"
+    libexportfolder = "/macos/"
+
 if env["target"] == "template_debug":
     debugsuffix = "_debug"
 else:
