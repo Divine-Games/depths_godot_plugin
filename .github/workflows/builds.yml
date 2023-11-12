@@ -104,7 +104,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.repository.name }}
+          name: '${{ env.LIBNAME }}.${{ matrix.platform }}.${{ matrix.target }}.${{ matrix.arch }}.zip'
           path: 'project/addons/divine_tools/bin/${{ matrix.platform }}'
 
       - name: Archive Release
