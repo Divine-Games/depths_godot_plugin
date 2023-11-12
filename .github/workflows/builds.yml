@@ -91,12 +91,6 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -qqq build-essential pkg-config
 
-      - name: Compile godot-cpp
-        shell: sh
-        run: |
-          scons target='${{ matrix.target }}' platform='${{ matrix.platform }}' arch='${{ matrix.arch }}' use_mingw=yes
-        working-directory: src/lib/godot-cpp
-
       - name: Compile Extension
         shell: sh
         run: |
