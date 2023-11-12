@@ -65,6 +65,14 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Cache SCons and Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.scons_cache
+            ~/.cache/pip
+          key: ${{ runner.os }}-scons-${{ hashFiles('**/SConstruct') }}
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
