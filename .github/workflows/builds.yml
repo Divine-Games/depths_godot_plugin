@@ -99,7 +99,7 @@ jobs:
       - name: Delete compilation files
         if: ${{ matrix.platform == 'windows' }}
         run: |
-          Remove-Item game/bin/* -Include *.exp,*.lib,*.pdb -Force
+          Remove-Item project/addons/divine_tools/bin/${{ matrix.platform }}/* -Include *.exp,*.lib,*.pdb -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
