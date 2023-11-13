@@ -73,7 +73,7 @@ jobs:
           ssh-key: ${{ secrets.DEPTHS_SERVER_SSH_PRIVATE_KEY }} # ssh-keygen -t rsa -f DEPTHS_SERVER_SSH_PRIVATE_KEY -C deploy -b 2048
           repository: Divine-Games/depths_game_server
           submodules: recursive
-          path: ../depths_game_server
+          path: depths_game_server
 
       - name: Cache SCons and Python dependencies
         uses: actions/cache@v2
@@ -86,7 +86,7 @@ jobs:
       - name: Build mapgen library
         shell: bash
         run: |
-          cd depths_game_server/cmd/godot_dll
+          cd "${{ github.workspace }}/depths_game_server/cmd/godot_dll"
           go build -o ../../../src/lib/divine_tools/libmapgen.a -buildmode=c-archive .
 
       - name: Set up Python
