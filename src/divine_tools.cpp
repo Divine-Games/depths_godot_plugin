@@ -1,5 +1,5 @@
 #include "divine_tools.h"
-#include "lib/divine_tools/mapgen.h"
+#include "lib/divine_tools/libmapgen.h"
 #include <stdio.h>
 #ifdef _WIN32
 #include <Windows.h>
