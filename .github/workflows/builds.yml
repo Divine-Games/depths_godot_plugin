@@ -88,7 +88,7 @@ jobs:
         shell: bash
         run: |
           cd "${{ github.workspace }}/depths_game_server/cmd/godot_dll"
-          go build -o ../../../src/lib/divine_tools/libmapgen.a -buildmode=c-archive .
+          GOOS="${{ matrix.platform }}" GOARCH="amd64" go build -o ../../../src/lib/divine_tools/libmapgen.a -buildmode=c-archive .
 
       - name: Set up Python
         uses: actions/setup-python@v4

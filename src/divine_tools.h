@@ -6,24 +6,24 @@
 
 using namespace godot;
 
-class divine_tools : public RefCounted {
-  GDCLASS(divine_tools, Object);
+class divine_tools : public RefCounted
+{
+    GDCLASS(divine_tools, Object);
 
-  static divine_tools *singleton;
+    static divine_tools *singleton;
 
 protected:
-  static void _bind_methods();
+    static void _bind_methods();
 
 public:
-  static divine_tools *get_singleton();
+    static divine_tools *
+    get_singleton();
 
-  divine_tools();
-  ~divine_tools();
+    divine_tools();
+    ~divine_tools();
 
-  Dictionary generatePrimMapFromSeed(int mapSize, int64_t seed,
-                                     const godot::String &theme);
-  Dictionary generatePerlinMapFromSeed(int mapSize, int64_t seed,
-                                       const godot::String &theme);
+    Dictionary generatePrimMapFromSeed(int mapSize, int64_t seed, const godot::String &theme);
+    Dictionary generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String &theme);
 };
 
 #endif
