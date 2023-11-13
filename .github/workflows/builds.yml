@@ -5,7 +5,7 @@ name: Builds
 on: [push, pull_request]
 
 env:
-  LIBNAME: depths
+  SCONS_CACHE: ${{ github.workspace }}/.scons_cache
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos
@@ -75,13 +75,16 @@ jobs:
           ref: refactor
           path: depths_game_server
 
-      - name: Cache SCons and Python dependencies
+      - name: Cache SCons, Python and Go dependencies
         uses: actions/cache@v2
         with:
           path: |
-            ~/.scons_cache
-            ~/.cache/pip
-          key: ${{ runner.os }}-scons-${{ hashFiles('**/SConstruct') }}
+            ${{ env.SCONS_CACHE }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/SConstruct') }}-${{ hashFiles('**/requirements.txt') }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-deps-${{ hashFiles('**/SConstruct') }}-${{ hashFiles('**/requirements.txt') }}-
+            ${{ runner.os }}-deps-${{ hashFiles('**/SConstruct') }}-
+            ${{ runner.os }}-deps-
 
       - name: Build mapgen library
         shell: bash
