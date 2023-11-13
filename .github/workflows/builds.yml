@@ -67,6 +67,13 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Checkout project
+        uses: actions/checkout@v3
+        with:
+          repository: Divine-Games/depths_game_server
+          submodules: recursive
+          path: depths_game_server
+
       - name: Cache SCons and Python dependencies
         uses: actions/cache@v2
         with:
@@ -74,6 +81,11 @@ jobs:
             ~/.scons_cache
             ~/.cache/pip
           key: ${{ runner.os }}-scons-${{ hashFiles('**/SConstruct') }}
+
+      - name: Build mapgen library
+        shell: bash
+        working-directory: depths_game_server/cmd/godot_dll
+        run: go build -o ../../../src/lib/divine_tools/libmapgen.a -buildmode=c-archive .
 
       - name: Set up Python
         uses: actions/setup-python@v4
