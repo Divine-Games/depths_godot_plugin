@@ -22,6 +22,7 @@ public:
     divine_tools();
     ~divine_tools();
 
-    Dictionary generateMapFromSeed(int width, int height, int64_t seed);
+    Dictionary generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme);
+    Dictionary generatePerlinMapFromSeed(int mapSize, int64_t seed, const std::string& theme);
 };
 #endif

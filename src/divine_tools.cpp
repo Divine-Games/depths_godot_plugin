@@ -1,19 +1,17 @@
 #include "divine_tools.h"
-#include "lib/divine_tools/libmapgen.h"
+#include "lib/divine_tools/mapgen.h"
 #include <stdio.h>
 #ifdef _WIN32
-#include <windows.h>
+#include <Windows.h>
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
-
-#define BIND_METHOD(method, ...) godot::ClassDB::bind_method(D_METHOD(#method, #__VA_ARGS__), &divine_tools::method)
-
 divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
 {
-    BIND_METHOD(generateMapFromSeed, width, height, seed);
+    ClassDB::bind_method(D_METHOD("generate_perlin_map_from_seed", "mapSize", "seed"), &divine_tools::generatePerlinMapFromSeed);
+    ClassDB::bind_method(D_METHOD("generate_prim_map_from_seed", "width", "seed", "theme"), &divine_tools::generatePrimMapFromSeed);
 }
 
 divine_tools *divine_tools::get_singleton()
@@ -31,8 +29,14 @@ divine_tools::~divine_tools()
     singleton = nullptr;
 }
 
-Dictionary divine_tools::generateMapFromSeed(int32_t width, int32_t height, int64_t seed)
+Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
 {
-    char *result = GenerateMapWithRandomizedPrims(width, seed);
+    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, theme);
+    return JSON::parse_string(result);
+}
+
+Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
+{
+    char *result = GenerateMapWithPerlinNoise(mapSize, seed, theme);
     return JSON::parse_string(result);
 }
