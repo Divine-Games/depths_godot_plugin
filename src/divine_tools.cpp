@@ -10,7 +10,8 @@ divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
 {
-    ClassDB::bind_method(D_METHOD("get_sys_monitor_info", "width", "height", "seed"), &divine_tools::generateMapFromSeed);
+    ClassDB::bind_method(D_METHOD("generate_perlin_map_from_seed", "mapSize", "seed"), &divine_tools::generatePerlinMapFromSeed);
+    ClassDB::bind_method(D_METHOD("generate_prim_map_from_seed", "width", "seed", "theme"), &divine_tools::generatePrimMapFromSeed);
 }
 
 divine_tools *divine_tools::get_singleton()
@@ -28,8 +29,14 @@ divine_tools::~divine_tools()
     singleton = nullptr;
 }
 
-Dictionary divine_tools::generateMapFromSeed(int width, int height, int64_t seed)
+Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
 {
-    char *result = GenerateMapJSON(width, height, seed);
+    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, theme);
+    return JSON::parse_string(result);
+}
+
+Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
+{
+    char *result = GenerateMapWithPerlinNoise(mapSize, seed, theme);
     return JSON::parse_string(result);
 }
