@@ -1,6 +1,7 @@
 #include "divine_tools.h"
 #include "lib/divine_tools/libmapgen.h"
 #include <stdio.h>
+#include <string.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -31,12 +32,20 @@ divine_tools::~divine_tools()
 
 Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
 {
-    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, theme);
+    GoString goTheme;
+    goTheme.p = theme.c_str();
+    goTheme.n = strlen(theme.c_str());
+
+    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, goTheme);
     return JSON::parse_string(result);
 }
 
 Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
 {
-    char *result = GenerateMapWithPerlinNoise(mapSize, seed, theme);
+    GoString goTheme;
+    goTheme.p = theme.c_str();
+    goTheme.n = strlen(theme.c_str());
+
+    char *result = GenerateMapWithPerlinNoise(mapSize, seed, goTheme);
     return JSON::parse_string(result);
 }
