@@ -1,8 +1,8 @@
 #include "divine_tools.h"
-#include "lib/divine_tools/mapgen.h"
+#include "lib/divine_tools/libmapgen.h"
 #include <stdio.h>
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
@@ -33,6 +33,6 @@ divine_tools::~divine_tools()
 
 Dictionary divine_tools::generateMapFromSeed(int32_t width, int32_t height, int64_t seed)
 {
-    char *result = GenerateMapJSON(width, height, seed);
+    char *result = GenerateMapWithRandomizedPrims(width, seed);
     return JSON::parse_string(result);
 }
