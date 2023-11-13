@@ -37,15 +37,15 @@ def export(target, source, env):
 env = SConscript("src/lib/godot-cpp/SConstruct")
 
 if env["platform"] in ("linuxbsd", "linux"):
-    divine_tools_library = "libmapgen_linux.a"
+    divine_tools_library = ""
     libexportfolder = "/linux/"
 
 elif env["platform"] == "windows":
-    divine_tools_library = "libmapgen_windows.a"
+    divine_tools_library = ""
     libexportfolder = "/windows/"
 
 elif env["platform"] == "macos":
-    divine_tools_library = "libmapgen_macos.a"
+    divine_tools_library = ""
     libexportfolder = "/macos/"
 
 if env["target"] == "template_debug":
@@ -66,15 +66,6 @@ library = env.SharedLibrary(
     + debugsuffix,
     source=sources,
 )
-env.Depends(
-    library,
-    Command(
-        "project/addons/divine_tools/bin/" + libexportfolder + divine_tools_library,
-        "src/lib/divine_tools/" + divine_tools_library,
-        Copy("$TARGET", "$SOURCE"),
-    ),
-)
-env.AddPostAction(library, Action(export))
 
 Default(library)
 
