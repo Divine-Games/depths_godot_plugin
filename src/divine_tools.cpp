@@ -7,6 +7,7 @@
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
+#include <godot_cpp/variant/char_string.hpp>
 divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
@@ -30,21 +31,17 @@ divine_tools::~divine_tools()
     singleton = nullptr;
 }
 
-Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
+Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed)
 {
-    GoString goTheme;
-    goTheme.p = theme.c_str();
-    goTheme.n = strlen(theme.c_str());
-
-    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, goTheme);
+    char *result = GenerateMapWithRandomizedPrims(mapSize, seed);
     return JSON::parse_string(result);
 }
 
-Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
+Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String& theme)
 {
     GoString goTheme;
-    goTheme.p = theme.c_str();
-    goTheme.n = strlen(theme.c_str());
+    goTheme.p = theme.utf8().get_data();
+    goTheme.n = strlen(theme.utf8().get_data());
 
     char *result = GenerateMapWithPerlinNoise(mapSize, seed, goTheme);
     return JSON::parse_string(result);
