@@ -17,11 +17,11 @@ linux.release.rv64 = "bin/linux/libdivine_tools.so"
 
 [dependencies]
 
-windows.debug.x86_64 = { "windows/mapgen.dll": "" }
-windows.release.x86_64 = { "windows/mapgen.dll": "" }
-linux.debug.x86_64 = { "linux/libmapgen.so": "" }
-linux.release.x86_64 = { "linux/libmapgen.so": "" }
-linux.debug.arm64 = { "linux/libmapgen.so": "" }
-linux.release.arm64 = { "linux/libmapgen.so": "" }
-linux.debug.rv64 = { "linux/libmapgen.so": "" }
-linux.release.rv64 = { "linux/libmapgen.so": "" }
+windows.debug.x86_64 = { }
+windows.release.x86_64 = { }
+linux.debug.x86_64 = { }
+linux.release.x86_64 = { }
+linux.debug.arm64 = { }
+linux.release.arm64 = { }
+linux.debug.rv64 = { }
+linux.release.rv64 = { }

@@ -45,20 +45,20 @@ jobs:
           #   target: template_release
           #   platform: macos
           #   arch: universal
-          - identifier: linux-debug
-            os: ubuntu-latest
-            name: 🐧 Linux Debug
-            runner: ubuntu-20.04
-            target: template_debug
-            platform: linux
-            arch: x86_64
-          - identifier: linux-release
-            os: ubuntu-latest
-            name: 🐧 Linux Release
-            runner: ubuntu-20.04
-            target: template_release
-            platform: linux
-            arch: x86_64
+          # - identifier: linux-debug
+          #   os: ubuntu-latest
+          #   name: 🐧 Linux Debug
+          #   runner: ubuntu-20.04
+          #   target: template_debug
+          #   platform: linux
+          #   arch: x86_64
+          # - identifier: linux-release
+          #   os: ubuntu-latest
+          #   name: 🐧 Linux Release
+          #   runner: ubuntu-20.04
+          #   target: template_release
+          #   platform: linux
+          #   arch: x86_64
 
     steps:
 

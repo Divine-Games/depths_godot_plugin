@@ -1,7 +1,6 @@
 #!python
 import os
 import sys
-from distutils.dir_util import copy_tree
 import shutil
 
 # Asks if the addon should be exported directly
@@ -38,15 +37,15 @@ def export(target, source, env):
 env = SConscript("src/lib/godot-cpp/SConstruct")
 
 if env["platform"] in ("linuxbsd", "linux"):
-    divine_tools_library = "libmapgen.so"
+    divine_tools_library = "libmapgen_linux.a"
     libexportfolder = "/linux/"
 
 elif env["platform"] == "windows":
-    divine_tools_library = "mapgen.dll"
+    divine_tools_library = "libmapgen_windows.a"
     libexportfolder = "/windows/"
 
 elif env["platform"] == "macos":
-    divine_tools_library = "libmapgen.dylib"
+    divine_tools_library = "libmapgen_macos.a"
     libexportfolder = "/macos/"
 
 if env["target"] == "template_debug":
