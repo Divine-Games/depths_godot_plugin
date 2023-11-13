@@ -15,5 +15,8 @@ build/
 
 #Cleanup unused build files
 *.obj
-*.exp
-*.lib
+*.o
+*.a
+
+#Cleanup local release zip file
+release/

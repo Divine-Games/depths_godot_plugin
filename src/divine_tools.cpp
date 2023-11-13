@@ -6,12 +6,16 @@
 #endif
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/json.hpp>
+
+#define BIND_METHOD(method, ...) godot::ClassDB::bind_method(D_METHOD(#method, #__VA_ARGS__), &divine_tools::method)
+
 divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("generate_perlin_map_from_seed", "mapSize", "seed"), &divine_tools::generatePerlinMapFromSeed);
     ClassDB::bind_method(D_METHOD("generate_prim_map_from_seed", "width", "seed", "theme"), &divine_tools::generatePrimMapFromSeed);
+
 }
 
 divine_tools *divine_tools::get_singleton()
@@ -30,6 +34,7 @@ divine_tools::~divine_tools()
 }
 
 Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const std::string& theme)
+
 {
     char *result = GenerateMapWithRandomizedPrims(mapSize, seed, theme);
     return JSON::parse_string(result);
