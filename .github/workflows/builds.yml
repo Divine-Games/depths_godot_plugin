@@ -132,7 +132,7 @@ jobs:
         with:
           type: "zip"
           filename: "${{ env.LIBNAME }}.${{ matrix.platform }}.${{ matrix.target }}.${{ matrix.arch }}.zip"
-          path: "game/bin/"
+          path: "project/addons/divine_tools/bin/${{ matrix.platform }}"
 
       - name: Create and upload asset
         uses: ncipollo/release-action@v1
