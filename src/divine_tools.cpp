@@ -12,7 +12,7 @@ divine_tools *divine_tools::singleton = nullptr;
 
 void divine_tools::_bind_methods()
 {
-    ClassDB::bind_method(D_METHOD("generate_perlin_map_from_seed", "mapSize", "seed"), &divine_tools::generatePerlinMapFromSeed);
+    ClassDB::bind_method(D_METHOD("generate_perlin_map_from_seed", "mapSize", "seed", "theme"), &divine_tools::generatePerlinMapFromSeed);
     ClassDB::bind_method(D_METHOD("generate_prim_map_from_seed", "width", "seed", "theme"), &divine_tools::generatePrimMapFromSeed);
 }
 
@@ -31,18 +31,14 @@ divine_tools::~divine_tools()
     singleton = nullptr;
 }
 
-Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed)
+Dictionary divine_tools::generatePrimMapFromSeed(int mapSize, int64_t seed, const godot::String &theme)
 {
-    char *result = GenerateMapWithRandomizedPrims(mapSize, seed);
+    char *result = GenerateMapWithRandomizedPrims(mapSize, seed, (char *) theme.utf8().get_data());
     return JSON::parse_string(result);
 }
 
-Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String& theme)
+Dictionary divine_tools::generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String &theme)
 {
-    GoString goTheme;
-    goTheme.p = theme.utf8().get_data();
-    goTheme.n = strlen(theme.utf8().get_data());
-
-    char *result = GenerateMapWithPerlinNoise(mapSize, seed, goTheme);
+    char *result = GenerateMapWithPerlinNoise(mapSize, seed, (char *) theme.utf8().get_data());
     return JSON::parse_string(result);
 }

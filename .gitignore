@@ -20,3 +20,4 @@ build/
 
 #Cleanup local release zip file
 release/
+src/lib/divine_tools/libmapgen.h

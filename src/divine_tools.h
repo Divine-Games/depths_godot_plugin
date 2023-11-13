@@ -22,7 +22,7 @@ public:
     divine_tools();
     ~divine_tools();
 
-    Dictionary generatePrimMapFromSeed(int mapSize, int64_t seed);
-    Dictionary generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String& theme);
+    Dictionary generatePrimMapFromSeed(int mapSize, int64_t seed, const godot::String &theme);
+    Dictionary generatePerlinMapFromSeed(int mapSize, int64_t seed, const godot::String &theme);
 };
 #endif
