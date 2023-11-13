@@ -73,7 +73,7 @@ jobs:
           ssh-key: ${{ secrets.DEPTHS_SERVER_SSH_PRIVATE_KEY }} # ssh-keygen -t rsa -f DEPTHS_SERVER_SSH_PRIVATE_KEY -C deploy -b 2048
           repository: Divine-Games/depths_game_server
           submodules: recursive
-          path: depths_godot_plugin/depths_game_server
+          path: ../depths_game_server
 
       - name: Cache SCons and Python dependencies
         uses: actions/cache@v2
