@@ -70,6 +70,7 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v3
         with:
+          ssh-key: ${{ secrets.DEPTHS_SERVER_SSH_PRIVATE_KEY }} # ssh-keygen -t rsa -f DEPTHS_SERVER_SSH_PRIVATE_KEY -C deploy -b 2048
           repository: Divine-Games/depths_game_server
           submodules: recursive
           path: depths_game_server
