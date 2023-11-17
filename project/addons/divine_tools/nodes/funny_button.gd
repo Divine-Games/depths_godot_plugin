@@ -7,7 +7,15 @@ var label: Label
 
 @export var text: String: 
 	set(value):
-		text = value.to_upper()
+		text = value
+		_ready()
+@export var label_settings: LabelSettings = LabelSettings.new(): 
+	set(value):
+		label_settings = value
+		_ready()
+@export var uppercase_text: bool = true:
+	set(value):
+		uppercase_text = value
 		_ready()
 var font_size: int = 19
 
@@ -18,7 +26,6 @@ func _enter_tree() -> void:
 	ignore_texture_size = true
 	stretch_mode = STRETCH_SCALE
 	label = preload("./funny_label.tscn").instantiate()
-	label.label_settings = LabelSettings.new()
 	if get_child_count() > 0:
 		for child in get_children():
 			child.queue_free()
@@ -32,7 +39,11 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if label != null:
-		label.text = text
+		if(uppercase_text):
+			label.text = text.to_upper()
+		else:
+			label.text = text
+		label.label_settings = label_settings
 
 func _on_button_up() -> void:
 	if label != null:
