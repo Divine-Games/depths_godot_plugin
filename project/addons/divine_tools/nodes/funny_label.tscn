@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://caiibafkdn4iw"]
+
+[ext_resource type="FontFile" uid="uid://b1aqil574g7qi" path="res://assets/fonts/CambriaBold.ttf" id="1_433xa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7txcc"]
+line_spacing = 4.0
+font = ExtResource("1_433xa")
+font_size = 19
+font_color = Color(0.641933, 0.642009, 0.595695, 1)
+
+[node name="FunnysLabel" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 0
+label_settings = SubResource("LabelSettings_7txcc")
+horizontal_alignment = 1
+vertical_alignment = 1
